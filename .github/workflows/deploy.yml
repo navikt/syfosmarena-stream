@@ -1,4 +1,4 @@
-name: Deploy steam to dev and prod
+name: Deploy stream to dev and prod
 on: push
 
 jobs:
