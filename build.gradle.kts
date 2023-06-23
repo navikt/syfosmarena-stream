@@ -17,13 +17,14 @@ val logstashEncoderVersion = "7.4"
 val prometheusVersion = "0.16.0"
 val kotlinVersion = "1.8.22"
 val junitJupiterVersion = "5.9.3"
-val smCommonVersion = "1.0.1"
+val smCommonVersion = "1.0.6"
+val ktfmtVersion = "0.44"
 
 
 plugins {
     java
     kotlin("jvm") version "1.8.22"
-    id("org.jmailen.kotlinter") version "3.15.0"
+    id("com.diffplug.spotless") version "6.19.0"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("org.cyclonedx.bom") version "1.7.4"
 }
@@ -111,7 +112,10 @@ tasks {
         kotlinOptions.jvmTarget = "17"
     }
 
-    "check" {
-        dependsOn("formatKotlin")
+    spotless {
+        kotlin { ktfmt(ktfmtVersion).kotlinlangStyle() }
+        check {
+            dependsOn("spotlessApply")
+        }
     }
 }
