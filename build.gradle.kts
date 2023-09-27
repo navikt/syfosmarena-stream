@@ -17,7 +17,7 @@ val logstashEncoderVersion = "7.4"
 val prometheusVersion = "0.16.0"
 val kotlinVersion = "1.9.10"
 val junitJupiterVersion = "5.10.0"
-val smCommonVersion = "2.0.0"
+val smCommonVersion = "2.0.2"
 val ktfmtVersion = "0.44"
 
 
