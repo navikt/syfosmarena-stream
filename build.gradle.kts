@@ -19,7 +19,7 @@ val kotlinVersion = "1.9.10"
 val junitJupiterVersion = "5.10.0"
 val smCommonVersion = "2.0.2"
 val ktfmtVersion = "0.44"
-
+val snappyJavaVersion = "1.1.10.4"
 
 plugins {
     kotlin("jvm") version "1.9.10"
@@ -63,6 +63,11 @@ dependencies {
 
     implementation ("no.nav.helse:syfosm-common-models:$smCommonVersion")
     implementation ("no.nav.helse:syfosm-common-kafka:$smCommonVersion")
+    constraints {
+        implementation("org.xerial.snappy:snappy-java:$snappyJavaVersion") {
+            because("override transient from org.apache.kafka:kafka_2.12")
+        }
+    }
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion")
