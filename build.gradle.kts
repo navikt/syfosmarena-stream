@@ -19,7 +19,7 @@ val kotlinVersion = "1.9.10"
 val junitJupiterVersion = "5.10.0"
 val smCommonVersion = "2.0.2"
 val ktfmtVersion = "0.44"
-val snappyJavaVersion = "1.1.10.4"
+val snappyJavaVersion = "1.1.10.5"
 
 plugins {
     kotlin("jvm") version "1.9.10"
