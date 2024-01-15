@@ -23,7 +23,7 @@ val snappyJavaVersion = "1.1.10.5"
 
 plugins {
     kotlin("jvm") version "1.9.22"
-    id("com.diffplug.spotless") version "6.23.3"
+    id("com.diffplug.spotless") version "6.24.0"
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
