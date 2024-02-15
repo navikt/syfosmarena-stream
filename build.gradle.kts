@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 group = "no.nav.syfo"
 version = "1.0.0"
 
-val coroutinesVersion = "1.7.3"
+val coroutinesVersion = "1.8.0"
 val javaxActivationVersion = "1.1.1"
 val jacksonVersion = "2.16.1"
 val jaxbApiVersion = "2.4.0-b180830.0359"
