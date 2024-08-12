@@ -17,7 +17,6 @@ val logstashEncoderVersion = "8.0"
 val prometheusVersion = "0.16.0"
 val kotlinVersion = "2.0.10"
 val junitJupiterVersion = "5.10.3"
-val smCommonVersion = "2.0.8"
 val ktfmtVersion = "0.44"
 val snappyJavaVersion = "1.1.10.6"
 
@@ -61,13 +60,14 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
 
-    implementation ("no.nav.helse:syfosm-common-models:$smCommonVersion")
-    implementation ("no.nav.helse:syfosm-common-kafka:$smCommonVersion")
+    implementation("org.apache.kafka:kafka_2.12:$kafkaVersion")
     constraints {
         implementation("org.xerial.snappy:snappy-java:$snappyJavaVersion") {
             because("override transient from org.apache.kafka:kafka_2.12")
         }
     }
+
+    implementation("org.apache.kafka:kafka-streams:$kafkaVersion")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion")
@@ -105,7 +105,7 @@ tasks {
     }
 
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
+        kotlinOptions.jvmTarget = "21"
     }
 
     spotless {

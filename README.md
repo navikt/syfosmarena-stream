@@ -12,7 +12,7 @@ Application for creating stream follow-up tasks in Arena
 
 #### Requirements
 
-* JDK 17
+* JDK 21
 
 ## Getting started
 ## Running locally
