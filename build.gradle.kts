@@ -1,6 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 group = "no.nav.syfo"
 version = "1.0.0"
@@ -19,6 +19,7 @@ val kotlinVersion = "2.0.10"
 val junitJupiterVersion = "5.10.3"
 val ktfmtVersion = "0.44"
 val snappyJavaVersion = "1.1.10.6"
+val javaVersion = JvmTarget.JVM_21
 
 plugins {
     kotlin("jvm") version "2.0.10"
@@ -78,6 +79,15 @@ dependencies {
     }
 }
 
+
+kotlin {
+    compilerOptions {
+        jvmTarget = javaVersion
+    }
+}
+
+
+
 tasks {
     withType<Jar> {
         manifest.attributes["Main-Class"] = "no.nav.syfo.BootstrapKt"
@@ -102,10 +112,6 @@ tasks {
             showStackTraces = true
             exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
         }
-    }
-
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "21"
     }
 
     spotless {
