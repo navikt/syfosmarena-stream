@@ -80,7 +80,7 @@ fun startKafkaAivenStream(env: Environment, applicationState: ApplicationState) 
             Consumed.with(Serdes.String(), Serdes.String()),
         )
 
-    val joinWindow = JoinWindows.of(Duration.ofDays(14))
+    val joinWindow = JoinWindows.ofTimeDifferenceWithNoGrace(Duration.ofDays(14))
 
     inputStream
         .join(
