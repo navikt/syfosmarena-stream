@@ -41,7 +41,6 @@ spec:
     requests:
       cpu: 250m
       memory: 2048Mi
-    enabled: false
   kafka:
     pool: nav-prod
     streams: true
