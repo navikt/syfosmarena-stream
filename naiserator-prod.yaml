@@ -10,7 +10,7 @@ spec:
   replicas:
     min: 2
     max: 3
-    cpuThresholdPercentage: 90
+    cpuThresholdPercentage: 80
   port: 8080
   liveness:
     path: /internal/is_alive
@@ -38,8 +38,8 @@ spec:
     limits:
       memory: 2048Mi
     requests:
-      cpu: 150m
-      memory: 1792Mi
+      cpu: 80m
+      memory: 1024Mi
   kafka:
     pool: nav-prod
     streams: true
