@@ -18,7 +18,7 @@ val prometheusVersion = "0.16.0"
 val kotlinVersion = "2.0.20"
 val junitJupiterVersion = "5.11.0"
 val ktfmtVersion = "0.44"
-val snappyJavaVersion = "1.1.10.6"
+val snappyJavaVersion = "1.1.10.7"
 val javaVersion = JvmTarget.JVM_21
 
 plugins {
