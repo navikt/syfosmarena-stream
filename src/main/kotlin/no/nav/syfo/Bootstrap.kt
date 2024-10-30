@@ -59,12 +59,6 @@ fun startKafkaAivenStream(env: Environment, applicationState: ApplicationState) 
         KafkaUtils.getAivenKafkaConfig("sykmleding-stream")
             .toStreamsConfig(env.applicationName, Serdes.String()::class, Serdes.String()::class)
     streamProperties[StreamsConfig.APPLICATION_ID_CONFIG] = env.applicationId
-streamProperties[StreamsConfig.producerPrefix(ProducerConfig.COMPRESSION_TYPE_CONFIG)] =
-        "snappy"
-    streamProperties[StreamsConfig.producerPrefix(ProducerConfig.BATCH_SIZE_CONFIG)] =
-        32.times(1024).toString()
-    streamProperties[StreamsConfig.producerPrefix(ProducerConfig.MAX_REQUEST_SIZE_CONFIG)] =
-        5.times(1024).times(1000).toString()
     val inputStream =
         streamsBuilder
             .stream(
