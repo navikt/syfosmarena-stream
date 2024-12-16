@@ -16,7 +16,7 @@ val logbackVersion = "1.5.12"
 val logstashEncoderVersion = "8.0"
 val prometheusVersion = "0.16.0"
 val kotlinVersion = "2.1.0"
-val junitJupiterVersion = "5.11.3"
+val junitJupiterVersion = "5.11.4"
 val ktfmtVersion = "0.44"
 
 ///Due to vulnerabilities
