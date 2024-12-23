@@ -8,19 +8,19 @@ version = "1.0.0"
 val javaVersion = JvmTarget.JVM_21
 
 
-val coroutinesVersion = "1.9.0"
+val coroutinesVersion = "1.10.1"
 val jacksonVersion = "2.18.2"
 val kafkaVersion = "3.9.0"
-val ktorVersion = "3.0.2"
-val logbackVersion = "1.5.12"
+val ktorVersion = "3.0.3"
+val logbackVersion = "1.5.15"
 val logstashEncoderVersion = "8.0"
 val prometheusVersion = "0.16.0"
 val kotlinVersion = "2.1.0"
-val junitJupiterVersion = "5.11.3"
+val junitJupiterVersion = "5.11.4"
 val ktfmtVersion = "0.44"
 
 ///Due to vulnerabilities
-val nettyCommonVersion = "4.1.115.Final"
+val nettyCommonVersion = "4.1.116.Final"
 
 plugins {
     kotlin("jvm") version "2.1.0"
