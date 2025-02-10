@@ -15,7 +15,7 @@ val ktorVersion = "3.0.3"
 val logbackVersion = "1.5.16"
 val logstashEncoderVersion = "8.0"
 val prometheusVersion = "0.16.0"
-val kotlinVersion = "2.1.0"
+val kotlinVersion = "2.1.10"
 val junitJupiterVersion = "5.11.4"
 val ktfmtVersion = "0.44"
 
@@ -23,9 +23,9 @@ val ktfmtVersion = "0.44"
 val nettyCommonVersion = "4.1.117.Final"
 
 plugins {
-    kotlin("jvm") version "2.1.0"
+    kotlin("jvm") version "2.1.10"
     id("com.diffplug.spotless") version "7.0.2"
-    id("com.gradleup.shadow") version "8.3.5"
+    id("com.gradleup.shadow") version "8.3.6"
 }
 
 repositories {
