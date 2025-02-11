@@ -20,7 +20,7 @@ val junitJupiterVersion = "5.11.4"
 val ktfmtVersion = "0.44"
 
 ///Due to vulnerabilities
-val nettyCommonVersion = "4.1.117.Final"
+val nettyCommonVersion = "4.1.118.Final"
 
 plugins {
     kotlin("jvm") version "2.1.10"
