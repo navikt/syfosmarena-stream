@@ -9,18 +9,18 @@ val javaVersion = JvmTarget.JVM_21
 
 
 val coroutinesVersion = "1.10.1"
-val jacksonVersion = "2.18.2"
+val jacksonVersion = "2.18.3"
 val kafkaVersion = "3.9.0"
-val ktorVersion = "3.1.0"
-val logbackVersion = "1.5.16"
+val ktorVersion = "3.1.1"
+val logbackVersion = "1.5.17"
 val logstashEncoderVersion = "8.0"
 val prometheusVersion = "0.16.0"
 val kotlinVersion = "2.1.10"
-val junitJupiterVersion = "5.11.4"
+val junitJupiterVersion = "5.12.0"
 val ktfmtVersion = "0.44"
 
 ///Due to vulnerabilities
-val nettyCommonVersion = "4.1.118.Final"
+val nettyCommonVersion = "4.1.119.Final"
 
 plugins {
     kotlin("jvm") version "2.1.10"
@@ -70,6 +70,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
 }
 
@@ -99,10 +100,10 @@ tasks {
     }
 
     withType<Test> {
-        useJUnitPlatform {
-        }
+        useJUnitPlatform {}
         testLogging {
-            events("skipped", "failed")
+            events("passed", "skipped", "failed")
+            showStandardStreams = true
             showStackTraces = true
             exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
         }
