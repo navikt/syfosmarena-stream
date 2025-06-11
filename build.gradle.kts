@@ -8,23 +8,23 @@ version = "1.0.0"
 val javaVersion = JvmTarget.JVM_21
 
 
-val coroutinesVersion = "1.10.1"
-val jacksonVersion = "2.18.3"
-val kafkaVersion = "3.9.0"
-val ktorVersion = "3.1.1"
-val logbackVersion = "1.5.17"
-val logstashEncoderVersion = "8.0"
+val coroutinesVersion = "1.10.2"
+val jacksonVersion = "2.19.0"
+val kafkaVersion = "3.9.1"
+val ktorVersion = "3.1.3"
+val logbackVersion = "1.5.18"
+val logstashEncoderVersion = "8.1"
 val prometheusVersion = "0.16.0"
-val kotlinVersion = "2.1.10"
-val junitJupiterVersion = "5.12.0"
+val kotlinVersion = "2.1.21"
+val junitJupiterVersion = "5.13.1"
 val ktfmtVersion = "0.44"
 
 ///Due to vulnerabilities
-val nettyCommonVersion = "4.1.119.Final"
+val nettyCommonVersion = "4.2.2.Final"
 
 plugins {
-    kotlin("jvm") version "2.1.10"
-    id("com.diffplug.spotless") version "7.0.2"
+    kotlin("jvm") version "2.1.21"
+    id("com.diffplug.spotless") version "7.0.4"
     id("com.gradleup.shadow") version "8.3.6"
 }
 
