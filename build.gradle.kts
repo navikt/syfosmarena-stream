@@ -10,7 +10,7 @@ val javaVersion = JvmTarget.JVM_21
 
 val coroutinesVersion = "1.10.1"
 val jacksonVersion = "2.18.3"
-val kafkaVersion = "3.9.0"
+val kafkaVersion = "3.9.1"
 val ktorVersion = "3.1.1"
 val logbackVersion = "1.5.17"
 val logstashEncoderVersion = "8.0"
