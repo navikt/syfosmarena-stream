@@ -9,21 +9,19 @@ val javaVersion = JvmTarget.JVM_21
 
 
 val coroutinesVersion = "1.10.1"
-val jacksonVersion = "2.18.3"
+val jacksonVersion = "2.20.2"
 val kafkaVersion = "3.9.0"
-val ktorVersion = "3.1.1"
-val logbackVersion = "1.5.17"
+val ktorVersion = "3.4.0"
+val logbackVersion = "1.5.20"
 val logstashEncoderVersion = "8.0"
 val prometheusVersion = "0.16.0"
 val kotlinVersion = "2.1.10"
 val junitJupiterVersion = "5.12.0"
 val ktfmtVersion = "0.44"
 
-///Due to vulnerabilities
-val nettyCommonVersion = "4.1.119.Final"
 
 plugins {
-    kotlin("jvm") version "2.1.10"
+    kotlin("jvm") version "2.2.20"
     id("com.diffplug.spotless") version "7.0.2"
     id("com.gradleup.shadow") version "8.3.6"
 }
@@ -46,11 +44,6 @@ dependencies {
 
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
-    constraints {
-        implementation("io.netty:netty-common:$nettyCommonVersion") {
-            because("override transient from io.ktor:ktor-server-netty")
-        }
-    }
     implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
     implementation("io.ktor:ktor-server-status-pages:$ktorVersion")
     implementation("io.ktor:ktor-server-call-id:$ktorVersion")
