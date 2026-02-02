@@ -8,22 +8,22 @@ version = "1.0.0"
 val javaVersion = JvmTarget.JVM_21
 
 
-val coroutinesVersion = "1.10.1"
-val jacksonVersion = "2.20.2"
-val kafkaVersion = "3.9.0"
+val coroutinesVersion = "1.10.2"
+val jacksonVersion = "2.21.0"
+val kafkaVersion = "3.9.1"
 val ktorVersion = "3.4.0"
-val logbackVersion = "1.5.20"
-val logstashEncoderVersion = "8.0"
+val logbackVersion = "1.5.26"
+val logstashEncoderVersion = "9.0"
 val prometheusVersion = "0.16.0"
-val kotlinVersion = "2.1.10"
-val junitJupiterVersion = "5.12.0"
+val kotlinVersion = "2.3.0"
+val junitJupiterVersion = "6.0.2"
 val ktfmtVersion = "0.44"
 
 
 plugins {
-    kotlin("jvm") version "2.2.20"
+    kotlin("jvm") version "2.3.0"
     id("com.diffplug.spotless") version "7.0.2"
-    id("com.gradleup.shadow") version "8.3.6"
+    id("com.gradleup.shadow") version "9.3.1"
 }
 
 repositories {
