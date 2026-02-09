@@ -12,7 +12,7 @@ val coroutinesVersion = "1.10.1"
 val jacksonVersion = "2.20.2"
 val kafkaVersion = "3.9.0"
 val ktorVersion = "3.4.0"
-val logbackVersion = "1.5.20"
+val logbackVersion = "1.5.26"
 val logstashEncoderVersion = "8.0"
 val prometheusVersion = "0.16.0"
 val kotlinVersion = "2.1.10"
@@ -58,7 +58,7 @@ dependencies {
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
 
     implementation("org.apache.kafka:kafka-streams:$kafkaVersion")
-    implementation("org.apache.kafka:kafka_2.12:$kafkaVersion")
+    implementation("org.apache.kafka:kafka-clients:$kafkaVersion")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion")
