@@ -37,10 +37,10 @@ spec:
         - id: loki
   resources:
     limits:
-      memory: 2048Mi
+      memory: 2548Mi
     requests:
       cpu: 180m
-      memory: 1900Mi
+      memory: 2100Mi
   kafka:
     pool: nav-prod
     streams: true
