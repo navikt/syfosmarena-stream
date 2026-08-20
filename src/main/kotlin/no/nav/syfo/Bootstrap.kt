@@ -67,10 +67,7 @@ fun startKafkaAivenStream(env: Environment, applicationState: ApplicationState) 
                 ),
                 Consumed.with(Serdes.String(), Serdes.String()),
             )
-            .filter { _, value ->
-                value?.let { objectMapper.readValue<ReceivedSykmelding>(value).skalBehandles() }
-                    ?: true
-            }
+            .filter { _, value -> skalBehandles(value) }
 
     val journalOpprettetStream =
         streamsBuilder.stream(
@@ -122,6 +119,15 @@ fun startKafkaAivenStream(env: Environment, applicationState: ApplicationState) 
         }
     }
     stream.start()
+}
+
+fun skalBehandles(value: String?): Boolean {
+    val receivedSykmelding = value?.let { objectMapper.readValue<ReceivedSykmelding?>(it) }
+    if (receivedSykmelding == null) {
+        log.info("Mottok melding uten sykmelding, filtrerer den bort")
+        return false
+    }
+    return receivedSykmelding.skalBehandles()
 }
 
 fun ReceivedSykmelding.skalBehandles(): Boolean {
