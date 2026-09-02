@@ -5,25 +5,23 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 group = "no.nav.syfo"
 version = "1.0.0"
 
-val javaVersion = JvmTarget.JVM_21
-
+val javaVersion = JvmTarget.JVM_25
 
 val coroutinesVersion = "1.10.1"
-val jacksonVersion = "2.20.2"
-val kafkaVersion = "3.9.0"
-val ktorVersion = "3.4.0"
-val logbackVersion = "1.5.26"
-val logstashEncoderVersion = "8.0"
+val jacksonVersion = "3.2.2"
+val kafkaVersion = "4.3.1"
+val ktorVersion = "3.5.2"
+val logbackVersion = "1.6.3"
+val logstashEncoderVersion = "9.0"
 val prometheusVersion = "0.16.0"
-val kotlinVersion = "2.1.10"
-val junitJupiterVersion = "5.12.0"
-val ktfmtVersion = "0.44"
+val junitJupiterVersion = "6.1.3"
+val ktfmtVersion = "0.56"
 
 
 plugins {
-    kotlin("jvm") version "2.2.20"
-    id("com.diffplug.spotless") version "7.0.2"
-    id("com.gradleup.shadow") version "8.3.6"
+    kotlin("jvm") version "2.4.10"
+    id("com.diffplug.spotless") version "8.10.1"
+    id("com.gradleup.shadow") version "8.3.8"
 }
 
 repositories {
@@ -36,9 +34,7 @@ repositories {
 
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("io.prometheus:simpleclient_hotspot:$prometheusVersion")
     implementation("io.prometheus:simpleclient_common:$prometheusVersion")
 
@@ -47,15 +43,14 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
     implementation("io.ktor:ktor-server-status-pages:$ktorVersion")
     implementation("io.ktor:ktor-server-call-id:$ktorVersion")
-    implementation("io.ktor:ktor-serialization-jackson:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-jackson3:$ktorVersion")
 
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashEncoderVersion")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-jaxb-annotations:$jacksonVersion")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
+    implementation("tools.jackson.module:jackson-module-jaxb-annotations:$jacksonVersion")
+    implementation("tools.jackson.module:jackson-module-kotlin:$jacksonVersion")
+    implementation("tools.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
 
     implementation("org.apache.kafka:kafka-streams:$kafkaVersion")
     implementation("org.apache.kafka:kafka-clients:$kafkaVersion")
@@ -81,7 +76,8 @@ tasks {
         manifest.attributes["Main-Class"] = "no.nav.syfo.BootstrapKt"
     }
 
-    create("printVersion") {
+    register("printVersion") {
+        description = "version"
         println(project.version)
     }
 

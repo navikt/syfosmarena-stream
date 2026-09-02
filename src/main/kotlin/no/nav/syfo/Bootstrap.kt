@@ -1,11 +1,5 @@
 package no.nav.syfo
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.readValue
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import io.prometheus.client.hotspot.DefaultExports
 import java.time.Duration
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -25,14 +19,11 @@ import org.apache.kafka.streams.kstream.Consumed
 import org.apache.kafka.streams.kstream.JoinWindows
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import tools.jackson.databind.json.JsonMapper
+import tools.jackson.module.kotlin.jacksonMapperBuilder
+import tools.jackson.module.kotlin.readValue
 
-val objectMapper: ObjectMapper =
-    ObjectMapper().apply {
-        registerKotlinModule()
-        registerModule(JavaTimeModule())
-        configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-        configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-    }
+private val jsonMapper: JsonMapper = jacksonMapperBuilder().build()
 
 val log: Logger = LoggerFactory.getLogger("no.nav.syfo.syfosmarena-stream")
 
@@ -41,11 +32,7 @@ fun main() {
     val env = Environment()
     DefaultExports.initialize()
     val applicationState = ApplicationState()
-    val applicationEngine =
-        createApplicationEngine(
-            env,
-            applicationState,
-        )
+    val applicationEngine = createApplicationEngine(env, applicationState)
     val applicationServer = ApplicationServer(applicationEngine, applicationState)
 
     startKafkaAivenStream(env, applicationState)
@@ -61,19 +48,14 @@ fun startKafkaAivenStream(env: Environment, applicationState: ApplicationState) 
     val inputStream =
         streamsBuilder
             .stream(
-                listOf(
-                    env.okSykmeldingTopic,
-                    env.manuellSykmeldingTopic,
-                ),
+                listOf(env.okSykmeldingTopic, env.manuellSykmeldingTopic),
                 Consumed.with(Serdes.String(), Serdes.String()),
             )
             .filter { _, value -> skalBehandles(value) }
 
     val journalOpprettetStream =
         streamsBuilder.stream(
-            listOf(
-                env.journalOpprettetTopic,
-            ),
+            listOf(env.journalOpprettetTopic),
             Consumed.with(Serdes.String(), Serdes.String()),
         )
 
@@ -84,14 +66,14 @@ fun startKafkaAivenStream(env: Environment, applicationState: ApplicationState) 
             journalOpprettetStream,
             { sm2013, journalKafkaMessage ->
                 log.info("streamed to Aiven")
-                objectMapper.writeValueAsString(
+                jsonMapper.writeValueAsString(
                     JournaledReceivedSykmelding(
                         receivedSykmelding = sm2013.toByteArray(Charsets.UTF_8),
                         journalpostId =
-                            objectMapper
+                            jsonMapper
                                 .readValue<JournalKafkaMessage>(journalKafkaMessage)
                                 .journalpostId,
-                    ),
+                    )
                 )
             },
             joinWindow,
@@ -122,7 +104,7 @@ fun startKafkaAivenStream(env: Environment, applicationState: ApplicationState) 
 }
 
 fun skalBehandles(value: String?): Boolean {
-    val receivedSykmelding = value?.let { objectMapper.readValue<ReceivedSykmelding?>(it) }
+    val receivedSykmelding = value?.let { jsonMapper.readValue<ReceivedSykmelding?>(it) }
     if (receivedSykmelding == null) {
         log.info("Mottok melding uten sykmelding, filtrerer den bort")
         return false
