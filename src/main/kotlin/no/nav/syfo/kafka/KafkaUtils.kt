@@ -8,7 +8,7 @@ import org.apache.kafka.streams.StreamsConfig
 fun Properties.toStreamsConfig(
     applicationName: String,
     valueSerde: KClass<out Serde<out Any>>,
-    keySerde: KClass<out Serde<out Any>> = Serdes.String()::class
+    keySerde: KClass<out Serde<out Any>> = Serdes.String()::class,
 ): Properties =
     Properties().also {
         it.putAll(this)
